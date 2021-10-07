@@ -1,24 +1,48 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { TaskItem } from './TaskItem';
 
 function App() {
+
+  const [task, setTask] = useState([
+    {
+      isCompleted: true,
+      name: "Task Camilo",
+    },
+    {
+      isCompleted: false,
+      name: "Task Jose",
+    },
+    {
+      isCompleted: true,
+      name: "Task React",
+    }
+  ])
+  const handleTaskChange = (index)=> () =>{
+    const arr = [...task]
+    arr[index].isCompleted = !arr[index].isCompleted;
+    setTask(arr);
+
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+    <form>
+        <input type="text" placeholder="Task Name"/>
+        <button>Create Task</button>
+    </form>
+    <ul>
+        {task.map((task, index) => {
+          return (
+            <TaskItem
+              isCheked={task.isCompleted}
+              taskName={task.name}
+              onTaskChange={handleTaskChange(index)}
+            />
+          );
+        })}
+      </ul>
+  </main>
   );
 }
 
