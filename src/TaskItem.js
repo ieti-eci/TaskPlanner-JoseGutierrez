@@ -1,4 +1,3 @@
-
 export const TaskItem = ({isCheked, taskName, onTaskChange}) => {
     
     const styleOfTheComponent = {

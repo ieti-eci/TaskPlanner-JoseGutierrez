@@ -4,9 +4,11 @@ import { TaskItem } from './TaskItem';
 
 function App() {
 
+  const [text, setText] = useState("");
+
   const [task, setTask] = useState([
     {
-      isCompleted: true,
+      isCompleted: false,
       name: "Task Camilo",
     },
     {
@@ -14,7 +16,7 @@ function App() {
       name: "Task Jose",
     },
     {
-      isCompleted: true,
+      isCompleted: false,
       name: "Task React",
     }
   ])
@@ -25,23 +27,47 @@ function App() {
 
   }
 
+  const createTask = (event) =>{
+    event.preventDefault()
+    const array = [...task];
+    array.push( 
+      {
+        isCompleted: false,
+        name: text
+      }
+     )
+     setTask(array);
+  }
+
+  const changeText = (event) => {
+    const value = event.target.value;
+    setText(value);
+  }
+
   return (
     <main>
-    <form>
-        <input type="text" placeholder="Task Name"/>
-        <button>Create Task</button>
-    </form>
-    <ul>
-        {task.map((task, index) => {
-          return (
-            <TaskItem
-              isCheked={task.isCompleted}
-              taskName={task.name}
-              onTaskChange={handleTaskChange(index)}
-            />
-          );
-        })}
-      </ul>
+      <div class="form">
+        <form onSubmit={createTask}>
+          <input value={text} onChange= {changeText} type="text" placeholder="Task Name"/>
+          <button>Create Task</button>
+        </form>
+        <hr/>
+        <div class="listContainer">
+          <ul class="list">
+              {task.map((task, index) => {
+                return (
+                  <TaskItem
+                    isCheked={task.isCompleted}
+                    taskName={task.name}
+                    onTaskChange={handleTaskChange(index)}
+                  />
+                );
+              })}
+            
+          </ul>
+        </div>
+      </div>
+    
   </main>
   );
 }
