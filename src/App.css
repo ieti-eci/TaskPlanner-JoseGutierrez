@@ -7,40 +7,7 @@
   pointer-events: none;
 }
 
-hr {
-  
-  margin: 0 auto;
-  margin-top: 20px;
-  width: 60%;
-  border: 0;
-  height: 2px;
-  background-image: linear-gradient(to right, rgba(14, 238, 6, 0), rgb(122, 122, 124), rgba(92, 62, 62, 0));
-}
 
-.listContainer{
-  
-  text-align:center;
-}
-
-.list{
-  text-align: left;
-  display: inline-block;
-}
-
-
-.form{
-  margin: 0 auto;
-  text-align: center;
-  width: 30%;
-  height: 100%;
-  background: linear-gradient(to top, rgb(133, 225, 231), white);
-  box-shadow: 1px 1px 10px rgb(14, 13, 13);
-}
-
-button{
-
-  border-radius: 8px;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

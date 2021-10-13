@@ -1,75 +1,41 @@
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import './App.css';
-import { useState } from 'react';
-import { TaskItem } from './TaskItem';
+import Home from './Components/Home/Home';
+import Login from './Components/Login/Login';
+import SignUp from "./Components/SignUp/SignUp";
+
 
 function App() {
+  
+  return(
 
-  const [text, setText] = useState("");
+    <Router>
+      <Switch>
+        
 
-  const [task, setTask] = useState([
-    {
-      isCompleted: false,
-      name: "Task Camilo",
-    },
-    {
-      isCompleted: false,
-      name: "Task Jose",
-    },
-    {
-      isCompleted: false,
-      name: "Task React",
-    }
-  ])
-  const handleTaskChange = (index)=> () =>{
-    const arr = [...task]
-    arr[index].isCompleted = !arr[index].isCompleted;
-    setTask(arr);
+        <Route path="/home">
+          <Home />
+        </Route>
 
-  }
+        <Route path="/signUp">
+          <SignUp />
+        </Route>
 
-  const createTask = (event) =>{
-    event.preventDefault()
-    const array = [...task];
-    array.push( 
-      {
-        isCompleted: false,
-        name: text
-      }
-     )
-     setTask(array);
-  }
+        <Route path="/">
+          <Login />
+        </Route>
 
-  const changeText = (event) => {
-    const value = event.target.value;
-    setText(value);
-  }
+      </Switch>
 
-  return (
-    <main>
-      <div class="form">
-        <form onSubmit={createTask}>
-          <input value={text} onChange= {changeText} type="text" placeholder="Task Name"/>
-          <button>Create Task</button>
-        </form>
-        <hr/>
-        <div class="listContainer">
-          <ul class="list">
-              {task.map((task, index) => {
-                return (
-                  <TaskItem
-                    isCheked={task.isCompleted}
-                    taskName={task.name}
-                    onTaskChange={handleTaskChange(index)}
-                  />
-                );
-              })}
-            
-          </ul>
-        </div>
-      </div>
-    
-  </main>
-  );
+    </Router>
+  )
+  
+  
 }
 
 export default App;
