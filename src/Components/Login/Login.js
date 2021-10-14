@@ -56,13 +56,11 @@ function Login(){
         const data = new FormData(event.currentTarget);
         for (const user of users) {
           if( user.userName === data.get('email') && user.password === data.get('password') ){
-            sessionStorage.removeItem('user');
             sessionStorage.setItem('cu', data.get('email'));
             history.push('/home');
           }
         }
-        if( nuevo.userName === data.get('email') && nuevo.password === data.get('password') ){
-            sessionStorage.removeItem('user');
+        if( nuevo && nuevo.userName === data.get('email') && nuevo.password === data.get('password') ){
             sessionStorage.setItem('cu', data.get('email'));
             history.push('/home');
         }

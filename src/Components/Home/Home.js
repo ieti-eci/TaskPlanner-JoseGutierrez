@@ -7,34 +7,71 @@ function Home(){
     
     const [task, setTask] = useState([
         {
-        isCompleted: false,
-        name: "Task Camilo",
-        },
-        {
-        isCompleted: false,
-        name: "Task Jose",
-        },
-        {
-        isCompleted: false,
-        name: "Task React",
-        }
+          user: 'JoseGum',
+          tasks: [
+              {
+              isCompleted: false,
+              name: "Task Camilo",
+              description: "Camilo's task",
+              dueDate: '13/10/2021'
+              },
+              {
+              isCompleted: false,
+              name: "Task Jose",
+              description: "Jose's task",
+              dueDate: '15/10/2021'
+              },
+              {
+              isCompleted: false,
+              name: "Task React",
+              description: "React's task",
+              dueDate: '20/10/2021'
+              }
+          ]
+        }     
     ])
+
     const handleTaskChange = (index)=> () =>{
         const arr = [...task]
-        arr[index].isCompleted = !arr[index].isCompleted;
+        for (const user of task) {
+          if( user.user === sessionStorage.getItem('cu') ){
+            user.tasks[index].isCompleted = !user.tasks[index].isCompleted;
+          }
+        }
         setTask(arr);
 
     }
 
     const createTask = (event) =>{
         event.preventDefault()
+        const description = prompt('Type the task description here');
+        const dueDate = prompt('Task due date: ');
         const array = [...task];
-        array.push( 
-        {
-            isCompleted: false,
-            name: text
+        let flag = false;
+        for (const users of array) {
+          if( users.user === sessionStorage.getItem('cu') ){
+            flag = true;
+            users.tasks.push( {
+              isCompleted: false,
+              name: text,
+              description: description,
+              dueDate: dueDate
+            })
+          }
         }
-        )
+        if( !flag ){
+          array.push({
+            user: sessionStorage.getItem('cu'),
+            tasks: [
+              {
+                isCompleted: false,
+                name: text,
+                description: description,
+                dueDate: dueDate
+              }
+            ]
+          })
+        }
         setTask(array);
     }
 
@@ -53,14 +90,20 @@ function Home(){
         <hr/>
         <div class="listContainer">
           <ul class="list">
-              {task.map((task, index) => {
-                return (
-                  <TaskItem
-                    isCheked={task.isCompleted}
-                    taskName={task.name}
-                    onTaskChange={handleTaskChange(index)}
-                  />
-                );
+              {task.map((task) => { 
+                if(task.user === sessionStorage.getItem('cu')){
+                  return(
+                    task.tasks.map( (task, index) => {
+                      return (
+                        <TaskItem
+                          isCheked={task.isCompleted}
+                          taskName={task.name}
+                          onTaskChange={handleTaskChange(index)}
+                        />
+                      );
+                    })
+                  );  
+                } 
               })}
             
           </ul>
