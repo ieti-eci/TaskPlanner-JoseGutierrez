@@ -1,0 +1,38 @@
+hr {
+  
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 60%;
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(14, 238, 6, 0), rgb(122, 122, 124), rgba(92, 62, 62, 0));
+  }
+  
+  .listContainer{
+    
+    text-align:center;
+  }
+  
+  .list{
+    text-align: left;
+    display: inline-block;
+  }
+  
+  .space{
+    padding-bottom: 10em;
+  }
+  
+  .form{
+    margin: 0 auto;
+    text-align: center;
+    width: 30%;
+    height: 100%;
+    background-image: linear-gradient(345deg, #9868c5 0, #7b58ab 25%, #5f4890 50%, #453875 75%, #2e295c 100%);
+    
+    box-shadow: 1px 1px 10px rgb(255, 255, 255);
+  }
+  
+  button{
+  
+    border-radius: 8px;
+  }
