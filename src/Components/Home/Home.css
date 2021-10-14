@@ -18,14 +18,18 @@ hr {
     display: inline-block;
   }
   
+  .space{
+    padding-bottom: 10em;
+  }
   
   .form{
     margin: 0 auto;
     text-align: center;
     width: 30%;
     height: 100%;
-    background: linear-gradient(to top, rgb(133, 225, 231), white);
-    box-shadow: 1px 1px 10px rgb(14, 13, 13);
+    background-image: linear-gradient(345deg, #9868c5 0, #7b58ab 25%, #5f4890 50%, #453875 75%, #2e295c 100%);
+    
+    box-shadow: 1px 1px 10px rgb(255, 255, 255);
   }
   
   button{

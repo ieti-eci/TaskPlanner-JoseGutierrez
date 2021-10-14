@@ -8,13 +8,22 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useHistory } from 'react-router-dom';
 import './SignUp.css';
+import { makeStyles } from '@mui/styles';
 
 
 
 
 function SignUp(){
+  const useStyles = makeStyles(theme =>   ({
+    textField: {
+      border: "1px solid white"
+    }
+  }));
+  const classes = useStyles();
 
+    let history = useHistory();
     const [values, setValues] = useState({
         userName: '',
         password: '',
@@ -41,25 +50,23 @@ function SignUp(){
       console.log('Usuario: '+ values.userName);
       console.log('Contraseña: '+ values.password);
       sessionStorage.setItem("user", JSON.stringify(values));
-     // let x = sessionStorage.getItem("list");
-      //console.log('x antes del split: '+x)
-      //console.log('x despues del split: '+x.split(','));
-
-
+      alert('Usuario registrado satisfactoriamente');
+      history.push('/login');
     }
+
     return(
         <div class="form">
           <form onSubmit={handleSubmit}>
 
           
               <div class='space'>
-                <TextField id="outlined-basic" label="User Name" onChange={ handleChange('userName') } variant="outlined" color="warning" focused/>
+                <TextField id="outlined-basic" label="User Name" onChange={ handleChange('userName') } variant="outlined" className={classes.textField}/>
               </div>
                 
                 
                 
               <div class='space'>
-                <FormControl sx={{ m: 1, width: '26ch' }} variant="outlined"  color="warning" focused>
+                <FormControl sx={{ m: 1, width: '26ch' }} variant="outlined" >
                   <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                   <OutlinedInput
                     color = "warning"

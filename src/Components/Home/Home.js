@@ -1,6 +1,6 @@
 import './Home.css'
 import { useState } from 'react';
-import { TaskItem } from './TaskItem';
+import OutlinedCard from '../../Task';
 
 function Home(){
     const [text, setText] = useState("");
@@ -95,16 +95,15 @@ function Home(){
                   return(
                     task.tasks.map( (task, index) => {
                       return (
-                        <TaskItem
-                          isCheked={task.isCompleted}
-                          taskName={task.name}
-                          onTaskChange={handleTaskChange(index)}
-                        />
+                        <div class="space">
+                          <><OutlinedCard name={task.name} description={task.description} dueDate={task.dueDate} /></>
+                        </div>
                       );
                     })
                   );  
                 } 
               })}
+              
             
           </ul>
         </div>
